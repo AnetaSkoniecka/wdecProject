@@ -1,0 +1,6 @@
+param amortyzacja := ;
+param gotowka := ;
+param max_kredyt := ;
+param max_produkcja := ;
+param k_staly := ;
+param zadluzenie := ;
