@@ -38,6 +38,7 @@ public class WdecProject extends JFrame {
 	 JTextField textField_stawkaPodatku;
 	 JTextField textField_maksProdukcja;
 	 JTextField textField_zysk;
+	 JTextField textField_ryzyko;
 
 	/**
 	 * Launch the application.
@@ -63,7 +64,7 @@ public class WdecProject extends JFrame {
 		controler = new Controler(this);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 712, 410);
+		setBounds(100, 100, 712, 528);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -90,24 +91,31 @@ public class WdecProject extends JFrame {
 		JLabel label_oprocKonta = new JLabel("Oproc konta");
 		
 		textField_majatekTrwaly = new JTextField();
+		textField_majatekTrwaly.setText("1000000");
 		textField_majatekTrwaly.setColumns(10);
 		
 		textField_maksKredyt = new JTextField();
+		textField_maksKredyt.setText("800000");
 		textField_maksKredyt.setColumns(10);
 		
 		textField_gotowka = new JTextField();
+		textField_gotowka.setText("300000");
 		textField_gotowka.setColumns(10);
 		
 		textField_zadluzenie = new JTextField();
+		textField_zadluzenie.setText("0");
 		textField_zadluzenie.setColumns(10);
 		
 		textField_amortyzacja = new JTextField();
+		textField_amortyzacja.setText("20000");
 		textField_amortyzacja.setColumns(10);
 		
 		textField_kosztyStale = new JTextField();
+		textField_kosztyStale.setText("10000");
 		textField_kosztyStale.setColumns(10);
 		
 		textField_oprocKonta = new JTextField();
+		textField_oprocKonta.setText("0.04");
 		textField_oprocKonta.setColumns(10);
 		
 		JButton btnOblicz = new JButton("Oblicz");
@@ -125,16 +133,25 @@ public class WdecProject extends JFrame {
 		JLabel label_maksProdukcja = new JLabel("Maks produkcja");
 		
 		textField_oprocKredytu = new JTextField();
+		textField_oprocKredytu.setText("0.12");
 		textField_oprocKredytu.setColumns(10);
 		
 		textField_stawkaPodatku = new JTextField();
+		textField_stawkaPodatku.setText("0.19");
 		textField_stawkaPodatku.setColumns(10);
 		
 		textField_maksProdukcja = new JTextField();
+		textField_maksProdukcja.setText("400000");
 		textField_maksProdukcja.setColumns(10);
+		
+		JLabel lblRyzyko = new JLabel("Ryzyko");
+		
+		textField_ryzyko = new JTextField();
+		textField_ryzyko.setText("0.3");
+		textField_ryzyko.setColumns(10);
 		GroupLayout gl_panel_stan = new GroupLayout(panel_stan);
 		gl_panel_stan.setHorizontalGroup(
-			gl_panel_stan.createParallelGroup(Alignment.TRAILING)
+			gl_panel_stan.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_stan.createSequentialGroup()
 					.addGroup(gl_panel_stan.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblStan)
@@ -159,24 +176,29 @@ public class WdecProject extends JFrame {
 								.addComponent(textField_majatekTrwaly, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(textField_oprocKredytu, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(textField_stawkaPodatku, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textField_maksProdukcja, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap(115, Short.MAX_VALUE))
+								.addComponent(textField_maksProdukcja, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(textField_ryzyko, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+					.addContainerGap(81, Short.MAX_VALUE))
 				.addGroup(gl_panel_stan.createSequentialGroup()
-					.addContainerGap(272, Short.MAX_VALUE)
+					.addContainerGap(263, Short.MAX_VALUE)
 					.addComponent(btnOblicz)
 					.addContainerGap())
-				.addGroup(Alignment.LEADING, gl_panel_stan.createSequentialGroup()
+				.addGroup(gl_panel_stan.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(label_oprocKredytu)
-					.addContainerGap(287, Short.MAX_VALUE))
-				.addGroup(Alignment.LEADING, gl_panel_stan.createSequentialGroup()
+					.addContainerGap(250, Short.MAX_VALUE))
+				.addGroup(gl_panel_stan.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(label_stawkaPodatku)
-					.addContainerGap(287, Short.MAX_VALUE))
-				.addGroup(Alignment.LEADING, gl_panel_stan.createSequentialGroup()
+					.addContainerGap(239, Short.MAX_VALUE))
+				.addGroup(gl_panel_stan.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(label_maksProdukcja)
-					.addContainerGap(287, Short.MAX_VALUE))
+					.addContainerGap(241, Short.MAX_VALUE))
+				.addGroup(gl_panel_stan.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblRyzyko)
+					.addContainerGap(274, Short.MAX_VALUE))
 		);
 		gl_panel_stan.setVerticalGroup(
 			gl_panel_stan.createParallelGroup(Alignment.LEADING)
@@ -222,7 +244,11 @@ public class WdecProject extends JFrame {
 					.addGroup(gl_panel_stan.createParallelGroup(Alignment.BASELINE)
 						.addComponent(label_maksProdukcja)
 						.addComponent(textField_maksProdukcja, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_panel_stan.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblRyzyko)
+						.addComponent(textField_ryzyko, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
 					.addComponent(btnOblicz)
 					.addContainerGap())
 		);

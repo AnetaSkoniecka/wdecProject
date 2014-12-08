@@ -52,7 +52,7 @@ public class Controler {
 	}
 	
 	public void createData() {
-		File file = new File("data.dat");
+		File file = new File("ddata.dat");
 		PrintWriter writer;
 		try {
 			file.createNewFile();
@@ -65,6 +65,9 @@ public class Controler {
 			writer.println("param max_produkcja := " + window.textField_maksProdukcja.getText() +";");
 			writer.println("param k_staly := " + window.textField_kosztyStale.getText() +";");
 			writer.println("param zadluzenie := " + window.textField_zadluzenie.getText() +";");
+			//writer.println("param r := 0.6; ");
+			//writer.println("param k_jedn_zm := 8;");
+			writer.println("param ryzyko := " + window.textField_ryzyko.getText() +";");
 			//
 			
 			writer.close();
@@ -75,24 +78,26 @@ public class Controler {
 	
 	public void solve() {
 		Message message = new Message(
-				"reset;\n" + "data data.dat;\n" + "model model.mod;\n" + "solve;\n"
+				"reset;\n" + "data ddata.dat;\n" + "model model.mod;\n" + "solve;\n"
 				);
 		List<Message> reply = jampl.communicate(message);
 	}
 	
 	public void setData() {
 		window.textField_jakoscZwykly.setText(display( "jakosc" ));
-		window.textField_produkcjaZwykly.setText(display( "produkcja" ));
+		window.textField_produkcjaZwykly.setText(display( "wolumen" ));
 		window.textField_cenaZwykly.setText(display( "cena" ));
-		window.textField_promocjaInternet.setText(display( "promocjaInternet" ));
-		window.textField_promocjaMagazyn.setText(display( "promocjaMagazyn" ));
-		window.textField_promocjaTelewizja.setText(display( "promocjaTelewizja" ));
+		window.textField_promocjaInternet.setText(display( "reklama_internet" ));
+		window.textField_promocjaMagazyn.setText(display( "reklama_magazyn" ));
+		window.textField_promocjaTelewizja.setText(display( "reklama_tv" ));
 		window.textField_zysk.setText(display( "zysk" ));
 	}
 	
 	public String display(String param) {
 		Message message = new Message("display " + param + ";");
 		List<Message> reply = jampl.communicate(message);
-		return reply.get(0).toString();
+		String str = reply.get(0).toString();
+		str = str.replaceAll("\\n", "").replaceAll("display "+ param + " = ", "").replaceAll(";", "");
+		return str;
 	}
 }
