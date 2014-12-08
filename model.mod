@@ -47,7 +47,7 @@ subject to ogr7: cena >= koszt_jedn_zmienny;
 subject to ogr8: ryzyko = (-0.01 * ((-cena) - 55 / 2) * ((-cena) - 55 / 2) - ((-cena) - 5) * (100 / 45)) / 50 - (0.8 * reklama_tv + 0.7 * reklama_magazyn + 0.5 *reklama_internet) / 200000 ; # dodatkowa wersja
 
 
-data data.dat;
+data ddata.dat;
 solve;
 
 display zysk ;

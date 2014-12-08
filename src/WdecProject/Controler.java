@@ -63,7 +63,7 @@ public class Controler {
 			writer.println("param gotowka := " + window.textField_gotowka.getText() +";");
 			writer.println("param max_kredyt := " + window.textField_maksKredyt.getText() +";");
 			writer.println("param max_produkcja := " + window.textField_maksProdukcja.getText() +";");
-			writer.println("param k_staly := " + window.textField_kosztyStale.getText() +";");
+			writer.println("param koszt_staly_prod := " + window.textField_kosztyStale.getText() +";");
 			writer.println("param zadluzenie := " + window.textField_zadluzenie.getText() +";");
 			//writer.println("param r := 0.6; ");
 			//writer.println("param k_jedn_zm := 8;");
@@ -81,6 +81,7 @@ public class Controler {
 				"reset;\n" + "data ddata.dat;\n" + "model model.mod;\n" + "solve;\n"
 				);
 		List<Message> reply = jampl.communicate(message);
+		System.out.println("ww");
 	}
 	
 	public void setData() {
