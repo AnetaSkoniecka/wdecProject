@@ -78,10 +78,10 @@ public class Controler {
 	
 	public void solve() {
 		Message message = new Message(
-				"reset;\n" + "data ddata.dat;\n" + "model model.mod;\n" + "solve;\n"
+				"model model.mod;\n"
 				);
 		List<Message> reply = jampl.communicate(message);
-		System.out.println("ww");
+		System.out.println(reply.get(0).toString());
 	}
 	
 	public void setData() {

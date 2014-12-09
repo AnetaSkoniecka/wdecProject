@@ -34,16 +34,21 @@ var koszty >= 0;
 maximize funkcja_celu: zysk;
 
 subject to ogr1: koszty = koszt_staly_prod + wolumen * koszt_jedn_zmienny + reklama_tv + reklama_internet + reklama_magazyn + amortyzacja;
+
 subject to ogr2: koszt_jedn_zmienny = 0.15827136*jakosc-0.8322906 + 7.9067*10^-6*wolumen+7-188042*7.9067*10^-6;
 #subject to ogr22: koszt_jedn_zmienny = 0.00065 * jakosc * jakosc  - 0.025 * jakosc + 7.89; # w. Wioli
+#subject to ogr222: koszt_jedn_zmienny = 0.00065 * jakosc * jakosc  - 0.025 * jakosc + 7.889* wolumen; # w. Konrada
+
 subject to ogr3: zysk = wolumen * cena - koszty;
 
 subject to ogr4: koszty <= gotowka;
 subject to ogr5: jakosc <= 100;
-subject to ogr55: jakosc >= 10;
+subject to ogr55: jakosc >= 40;
 subject to ogr6: wolumen <= max_produkcja;
 subject to ogr7: cena >= koszt_jedn_zmienny;
 
 subject to ogr8: ryzyko = (-0.01 * ((-cena) - 55 / 2) * ((-cena) - 55 / 2) - ((-cena) - 5) * (100 / 45)) / 50 - (0.8 * reklama_tv + 0.7 * reklama_magazyn + 0.5 *reklama_internet) / 200000 ; # dodatkowa wersja
 
 
+data ddata.dat;
+solve;
